@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Calculator</title>
+    <style>
+      .calculator {
+        width: 700px;
+        margin: 50px auto;
+      }
+      .display {
+        width: 100%;
+        height: 50px;
+        text-align: right;
+        padding: 10px;
+        font-size: 1.5em;
+        border: 1px solid #f9cbf4;
+        margin-bottom: 10px;
+      }
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+        color: #f9cbf4;
+      }
+      button {
+        height: 70px;
+        font-size: 1.4em;
+        color: #070004;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="display" class="display" disabled />
+      <div class="buttons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="insert('(')">(</button>
+        <button onclick="insert(')')">)</button>
+        <button onclick="insert('/')">/</button>
+
+        <button onclick="insert('7')">7</button>
+        <button onclick="insert('8')">8</button>
+        <button onclick="insert('9')">9</button>
+        <button onclick="insert('*')">*</button>
+
+        <button onclick="insert('4')">4</button>
+        <button onclick="insert('5')">5</button>
+        <button onclick="insert('6')">6</button>
+        <button onclick="insert('-')">-</button>
+
+        <button onclick="insert('1')">1</button>
+        <button onclick="insert('2')">2</button>
+        <button onclick="insert('3')">3</button>
+        <button onclick="insert('+')">+</button>
+
+        <button onclick="insert('0')">0</button>
+        <button onclick="insert('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="advancedOperation()">Adv</button>
+      </div>
+    </div>
+
+    <script>
+      //  insert values into the display
+      function insert(value) {
+        document.getElementById("display").value += value;
+      }
+
+      // clear the display
+      function clearDisplay() {
+        document.getElementById("display").value = "";
+      }
+
+      // Function to evaluate
+      function calculate() {
+        let expression = document.getElementById("display").value;
+
+        try {
+          let result = eval(expression);
+          document.getElementById("display").value = result;
+        } catch (error) {
+          document.getElementById("display").value = "Error";
+        }
+      }
+
+      //  advanced operations
+      function advancedOperation() {
+        //  random number  1 and 100
+        let randomNumber = Math.random() * 100;
+
+        let roundedNumber = Math.round(randomNumber);
+
+        document.getElementById("display").value = roundedNumber;
+      }
+
+      // Assumptions//
+      //  assume the input format is correct
+      //  The advanced function generates a random number between 0 and 100 and rounds it off
+      //  Division by zero is not handled separately,as it returns Infinity
+    </script>
+  </body>
+</html>
